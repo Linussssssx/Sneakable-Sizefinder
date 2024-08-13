@@ -1,0 +1,530 @@
+<html><head><base href="https://sneakerfinder.de/%20die%20Size%20guides%20sollen%20keine%20xtzra%20seite%20sein%20sondern%20man%20soll%20sie%20auskslappen%20k%C3%B6nnem">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sneaker Size Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+  :root {
+    --primary-color: #FFB703;
+    --secondary-color: #FFB703;
+    --text-color: #023047;
+    --background-color: #8ECAE6;
+    --card-background: #E6F3F8;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .top-bar {
+    background-color: #E6F3F8;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .top-bar-title {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .top-bar-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+  }
+
+  .top-bar-button {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .top-bar-button:hover {
+    background-color: rgba(2, 48, 71, 0.1);
+  }
+
+  .language-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .language-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #E6F3F8;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .language-content a {
+    color: var(--text-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .language-content a:hover {
+    background-color: #D1E8F0;
+  }
+
+  .show {
+    display: block;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeIn 1s ease-out;
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+  }
+
+  .size-finder {
+    background-color: #E6F3F8;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+    animation: slideUp 0.8s ease-out;
+  }
+
+  .size-finder h2 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  select, input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    background-color: #FFFFFF;
+  }
+
+  select:focus, input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+
+  button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  button:hover {
+    background-color: #e6a503;
+    transform: translateY(-2px);
+  }
+
+  #result {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-radius: var(--border-radius);
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  #result h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  }
+
+  #result p {
+    margin-bottom: 1rem;
+  }
+
+  #result .highlight {
+    font-weight: 700;
+    color: var(--text-color);
+  }
+
+  #result .note {
+    font-style: italic;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  #size-guides-section {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .size-guides {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    animation: fadeIn 1s ease-out;
+  }
+
+  .size-guide {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+
+  .size-guide:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .size-guide h3 {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .size-guide h3::after {
+    content: '\25BC';
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+  }
+
+  .size-guide.active h3::after {
+    transform: rotate(180deg);
+  }
+
+  .size-guide-content {
+    display: none;
+    padding-top: 1rem;
+  }
+
+  .size-guide.active .size-guide-content {
+    display: block;
+  }
+
+  .size-guide p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .size-guide .fit-label {
+    font-weight: normal;
+  }
+
+  .size-guide .fit-result {
+    font-weight: 700;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="top-bar-title">Sneakable</div>
+    <div class="top-bar-buttons">
+      <button onclick="scrollToSizeGuides()" class="top-bar-button">Size Guide</button>
+      <div class="language-dropdown">
+        <button onclick="toggleLanguageDropdown()" class="top-bar-button">Language</button>
+        <div id="languageDropdown" class="language-content">
+          <a href="#" onclick="changeLanguage('de')">Deutsch</a>
+          <a href="#" onclick="changeLanguage('lb')">Luxembourgisch</a>
+          <a href="#" onclick="changeLanguage('fr')">Français</a>
+          <a href="#" onclick="changeLanguage('en')">English</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>Sneaker Size Guide</h1>
+      <p class="subtitle">Finde deine perfekte Größe für jeden Sneaker!</p>
+    </header>
+
+    <div class="size-finder">
+      <h2>Größenfinder</h2>
+      <div class="form-group">
+        <label for="currentSneaker">Aktuelles Sneaker-Modell:</label>
+        <select id="currentSneaker">
+          <option value="">Wähle deinen aktuellen Sneaker</option>
+          <option value="adidasCampus">Adidas Campus</option>
+          <option value="adidasSamba">Adidas Samba</option>
+          <option value="gelNyc">Gel NYC</option>
+          <option value="jordan1High">Jordan 1 High</option>
+          <option value="jordan1Low">Jordan 1 Low</option>
+          <option value="jordan4">Jordan 4</option>
+          <option value="nikeAirForce1">Nike Air Force 1</option>
+          <option value="nikeDunk">Nike Dunk</option>
+          <option value="nikeSbDunk">Nike SB Dunk</option>
+          <option value="yeezySlides">Yeezy Slides</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="userSize">Deine aktuelle Größe:</label>
+        <input type="number" id="userSize" min="35" max="50" step="0.5" placeholder="z.B. 42">
+      </div>
+      <div class="form-group">
+        <label for="currentFit">Wie passt er?</label>
+        <select id="currentFit">
+          <option value="">Wähle die Passform</option>
+          <option value="tooSmall">Zu klein</option>
+          <option value="ratherSmall">Eher klein</option>
+          <option value="fitsWell">Passt gut</option>
+          <option value="ratherBig">Eher groß</option>
+          <option value="tooBig">Zu groß</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="desiredSneaker">Gewünschtes Sneaker-Modell:</label>
+        <select id="desiredSneaker">
+          <option value="">Wähle deinen gewünschten Sneaker</option>
+          <option value="adidasCampus">Adidas Campus</option>
+          <option value="adidasSamba">Adidas Samba</option>
+          <option value="gelNyc">Gel NYC</option>
+          <option value="jordan1High">Jordan 1 High</option>
+          <option value="jordan1Low">Jordan 1 Low</option>
+          <option value="jordan4">Jordan 4</option>
+          <option value="nikeAirForce1">Nike Air Force 1</option>
+          <option value="nikeDunk">Nike Dunk</option>
+          <option value="nikeSbDunk">Nike SB Dunk</option>
+          <option value="yeezySlides">Yeezy Slides</option>
+        </select>
+      </div>
+      <button onclick="findSize()">Finde meine Größe</button>
+      <div id="result"></div>
+    </div>
+
+    <h2 id="size-guides-section">Sneaker Size Guides</h2>
+    <div class="size-guides">
+      <div class="size-guide">
+        <h3 onclick="toggleSizeGuide(this)">Adidas Campus</h3>
+        <div class="size-guide-content">
+          <p><span class="fit-label">Passform:</span> <span class="fit-result">Normal</span></p>
+          <p>Empfehlung: Normale Größe wählen</p>
+        </div>
+      </div>
+      <div class="size-guide">
+        <h3 onclick="toggleSizeGuide(this)">Adidas Samba</h3>
+        <div class="size-guide-content">
+          <p><span class="fit-label">Passform:</span> <span class="fit-result">Eher klein</span></p>
+          <p>Empfehlung: Eine halbe Größe größer wählen</p>
+        </div>
+      </div>
+      <div class="size-guide">
+        <h3 onclick="toggleSizeGuide(this)">Gel NYC</h3>
+        <div class="size-guide-content">
+          <p><span class="fit-label">Passform:</span> <span class="fit-result">Eher klein</span></p>
+          <p>Empfehlung: Eine halbe Größe größer wählen</p>
+        </div>
+      </div>
+      <div class="size-guide">
+        <h3 onclick="toggleSizeGuide(this)">Jordan 1 High</h3>
+        <div class="size-guide-content">
+          <p><span class="fit-label">Passform:</span> <span class="fit-result">Klein</span></p>
+          <p>Empfehlung: Eine halbe Größe größer wählen</p>
+        </div>
+      </div>
+      <div class="size-guide">
+        <h3 onclick="toggleSizeGuide(this)">Jordan 1 Low</h3>
+        <div class="size-guide-content">
+          <p><span class="fit-label">Passform:</span> <span class="fit-result">Klein</span></p>
+          <p>Empfehlung: Eine halbe Größe größer wählen</p>
+        </div>
+      </div>
+      <div class="size-guide">
+        <h3 onclick="toggleSizeGuide(this)">Jordan 4</h3>
+        <div class="size-guide-content">
+          <p><span class="fit-label">Passform:</span> <span class="fit-result">Klein</span></p>
+          <p>Empfehlung: Eine halbe Größe größer wählen</p>
+        </div>
+      </div>
+      <div class="size-guide">
+        <h3 onclick="toggleSizeGuide(this)">Nike Air Force 1</h3>
+        <div class="size-guide-content">
+          <p><span class="fit-label">Passform:</span> <span class="fit-result">Groß</span></p>
+          <p>Empfehlung: Eine halbe Größe kleiner wählen</p>
+        </div>
+      </div>
+      <div class="size-guide">
+        <h3 onclick="toggleSizeGuide(this)">Nike Dunk</h3>
+        <div class="size-guide-content">
+          <p><span class="fit-label">Passform:</span> <span class="fit-result">Normal</span></p>
+          <p>Empfehlung: Normale Größe wählen</p>
+        </div>
+      </div>
+      <div class="size-guide">
+        <h3 onclick="toggleSizeGuide(this)">Nike SB Dunk</h3>
+        <div class="size-guide-content">
+          <p><span class="fit-label">Passform:</span> <span class="fit-result">Klein</span></p>
+          <p>Empfehlung: Eine halbe Größe größer wählen</p>
+        </div>
+      </div>
+      <div class="size-guide">
+        <h3 onclick="toggleSizeGuide(this)">Yeezy Slides</h3>
+        <div class="size-guide-content">
+          <p><span class="fit-label">Passform:</span> <span class="fit-result">Klein</span></p>
+          <p>Empfehlung: Eine ganze Größe größer wählen</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const sneakerSizing = {
+  adidasCampus: { fit: 'normal', recommendation: 0 },
+  adidasSamba: { fit: 'eher klein', recommendation: 0.5 },
+  gelNyc: { fit: 'eher klein', recommendation: 0.5 },
+  jordan1High: { fit: 'klein', recommendation: 0.5 },
+  jordan1Low: { fit: 'klein', recommendation: 0.5 },
+  jordan4: { fit: 'klein', recommendation: 0.5 },
+  nikeAirForce1: { fit: 'groß', recommendation: -0.5 },
+  nikeDunk: { fit: 'normal', recommendation: 0 },
+  nikeSbDunk: { fit: 'klein', recommendation: 0.5 },
+  yeezySlides: { fit: 'klein', recommendation: 1 }
+};
+
+function findSize() {
+  const currentModel = document.getElementById('currentSneaker').value;
+  const userSize = parseFloat(document.getElementById('userSize').value);
+  const currentFit = document.getElementById('currentFit').value;
+  const desiredModel = document.getElementById('desiredSneaker').value;
+  const resultDiv = document.getElementById('result');
+
+  if (!currentModel || !userSize || !currentFit || !desiredModel) {
+    resultDiv.innerHTML = '<p>Bitte fülle alle Felder aus, um deine perfekte Größe zu finden.</p>';
+    resultDiv.style.display = 'block';
+    return;
+  }
+
+  let recommendedSize = userSize;
+  const currentSneaker = sneakerSizing[currentModel];
+  const desiredSneaker = sneakerSizing[desiredModel];
+
+  if (currentFit === 'tooSmall') recommendedSize += 0.5;
+  if (currentFit === 'ratherSmall') recommendedSize += 0.25;
+  if (currentFit === 'ratherBig') recommendedSize -= 0.25;
+  if (currentFit === 'tooBig') recommendedSize -= 0.5;
+
+  recommendedSize -= currentSneaker.recommendation;
+  recommendedSize += desiredSneaker.recommendation;
+
+  const sizeDescription = recommendedSize % 1 === 0 ? recommendedSize.toFixed(0) : `${Math.floor(recommendedSize)} oder eine halbe Größe größer`;
+
+  resultDiv.innerHTML = `
+    <h3>Deine empfohlene Größe: <span class="highlight">${sizeDescription}</span></h3>
+    <p>Basierend auf deinem ${getModelName('currentSneaker')} empfehlen wir für den ${getModelName('desiredSneaker')} die Größe <span class="highlight">${sizeDescription}</span>.</p>
+    <p>Interessant zu wissen: Der ${getModelName('currentSneaker')} fällt typischerweise ${currentSneaker.fit} aus, während der ${getModelName('desiredSneaker')} ${desiredSneaker.fit} ausfällt. Diese Unterschiede haben wir in unserer Empfehlung berücksichtigt.</p>
+    <p class="note">Hinweis: Dies ist eine allgemeine Empfehlung. Die perfekte Passform kann je nach individueller Fußform und Sneaker-Modell variieren. Probiere die Schuhe immer an, um die beste Passform zu finden!</p>
+  `;
+  resultDiv.style.display = 'block';
+}
+
+function getModelName(selectId) {
+  const select = document.getElementById(selectId);
+  return select.options[select.selectedIndex].text;
+}
+
+function toggleLanguageDropdown() {
+  document.getElementById("languageDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.top-bar-button')) {
+    var dropdowns = document.getElementsByClassName("language-content");
+    for (var i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+function changeLanguage(lang) {
+  console.log("Language changed to: " + lang);
+}
+
+function scrollToSizeGuides() {
+  const sizeGuidesSection = document.getElementById('size-guides-section');
+  sizeGuidesSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+function toggleSizeGuide(element) {
+  const parent = element.parentElement;
+  parent.classList.toggle('active');
+}
+</script>
+</body></html>
